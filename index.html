@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0f4d2e">
+  <title>Offiziersskat</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Skat">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Start screen -->
+  <section id="start" class="start">
+    <div class="start-box">
+      <h1><span class="suits">♣ ♠ ♥ ♦</span>Offiziersskat</h1>
+      <p class="subtitle">Skat für zwei</p>
+
+      <div class="mode-picker" role="radiogroup" aria-label="Spielmodus">
+        <button type="button" class="mode" data-mode="pvp" aria-pressed="false">
+          <span class="mode-icon">👥</span>
+          <strong>2 Spieler</strong>
+          <small>an einem Gerät</small>
+        </button>
+        <button type="button" class="mode" data-mode="pvc" aria-pressed="false">
+          <span class="mode-icon">🤖</span>
+          <strong>Gegen Computer</strong>
+          <small>allein spielen</small>
+        </button>
+      </div>
+
+      <form id="setup" class="setup">
+        <label><span>Spieler 1 <small>(unten)</small></span>
+          <input id="name0" maxlength="16" autocomplete="off" placeholder="Spieler 1">
+        </label>
+        <label class="pvp-only"><span>Spieler 2 <small>(oben)</small></span>
+          <input id="name1" maxlength="16" autocomplete="off" placeholder="Spieler 2">
+        </label>
+        <div class="pvc-only">
+          <span class="label">Stärke des Computers</span>
+          <div class="segmented" id="level">
+            <button type="button" data-level="easy">Leicht</button>
+            <button type="button" data-level="medium">Mittel</button>
+            <button type="button" data-level="hard">Stark</button>
+          </div>
+        </div>
+        <label class="check pvp-only">
+          <input type="checkbox" id="faceToFace">
+          Gegenüber sitzen – obere Seite um 180° drehen
+        </label>
+        <button type="submit" class="primary big">Neues Spiel starten</button>
+        <button type="button" id="btn-resume" class="secondary" hidden>Gespeichertes Spiel fortsetzen</button>
+        <button type="button" class="link" data-action="rules">Spielregeln</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Game screen -->
+  <section id="game" class="game" hidden>
+    <header class="topbar">
+      <button type="button" class="icon-btn" data-action="menu" aria-label="Menü">☰</button>
+      <div id="scoreline" class="scoreline"></div>
+      <button type="button" class="icon-btn" data-action="rules" aria-label="Regeln">?</button>
+    </header>
+    <main class="table">
+      <section id="board-top" class="board"></section>
+      <section id="center" class="center"></section>
+      <section id="board-bottom" class="board"></section>
+    </main>
+  </section>
+
+  <div id="modal" class="modal" hidden>
+    <div id="modal-box" class="modal-box" role="dialog" aria-modal="true"></div>
+  </div>
+  <div id="toast" class="toast" hidden></div>
+
+  <script src="js/engine.js"></script>
+  <script src="js/ai.js"></script>
+  <script src="js/ui.js"></script>
+</body>
+</html>
